@@ -1,17 +1,27 @@
-//What is an object method? 
-let testUsr;
+//An object method is a function created inside one of the object propertiees that has access to and manipulates object data 
 
 function creatNewUser () {
     let newUser = {
-        firstName: prompt('Please enter your first name'),
-        lastName: prompt('Please enter your last name'),
+        setFirstName() {
+            Object.defineProperty(this, 'firstName', {
+                value: prompt('Please enter your first name'),
+                configurable: true,
+                writable: false 
+            })},
+        setLastName() {
+            Object.defineProperty(this, 'lastName', {
+                value: prompt('Please enter your last name'),
+                configurable: true,
+                writable: false
+            })},
         getLogin() { 
             return (this.firstName.trim().slice(0, 1).toLowerCase() + this.lastName.trim().toLowerCase());
-        },
-    };
+            }
+        };
+newUser.setFirstName();
+newUser.setLastName();
 return newUser;
 }
 
-testUsr = creatNewUser();
-console.log(testUsr.getLogin());
+console.log(creatNewUser().getLogin());
 
